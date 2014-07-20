@@ -13,12 +13,16 @@
 				</form>
 			</div>
 		</div>
+		<div id="apiswf"></div>
 		<div id="content">
 			@html.include('voting', model.votedTracks)
 		</div>
 	})
 
 	@html.block('scripts', function() {
+		<script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+		<script src="/js/token.js"></script>
+  		<script src="/js/player.js"></script>
 		<script type="text/javascript" src="/js/party.js"></script>
 	})
 })

@@ -61,6 +61,7 @@ module.exports = function( app ) {
 					// })
 					req.session.user = currentUser;
 					req.access = rdio.token
+					app.rdio = rdio;
 					res.redirect('/create')
 				})
 			});
@@ -73,6 +74,5 @@ module.exports = function( app ) {
 		for (var i in Object.keys(req.session)) req.session[i] = null;
 		res.redirect('/');
 	})
-	app.rdio = rdio;
 
 }
