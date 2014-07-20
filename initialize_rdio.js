@@ -1,7 +1,6 @@
 var Rdio = require('./node_modules/rdio/rdio.js')
 var RdioCredentials = require('./rdio_consumer_credentials');
 
-
 // takes an app and injects the 
 // logic for a master user logging in
 module.exports = function( app ) {

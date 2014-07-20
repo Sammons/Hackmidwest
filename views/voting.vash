@@ -1,0 +1,16 @@
+<h2>Current Suggestions</h2>
+@model.forEach(function(model) {
+	<div class="row">
+		<div class="col-xs-2">
+			<button type="button" class="btn btn-success">&#x1f44d</button>
+			<button type="button" class="btn btn-danger">&#x1f44e</button>
+		</div>
+		<div class="col-xs-3">
+			@model.votes
+		</div>
+		<div class="col-xs-7">
+			<div><strong>@model.name</strong></div>
+			<div>@model.artist - @model.album</div>
+		</div>
+	</div>
+})

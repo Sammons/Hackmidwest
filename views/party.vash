@@ -1,0 +1,19 @@
+@html.extend('layout', function(model) {
+	@html.block('content', function(model) {
+	<div class="row">
+		<div class="col-md-8">
+			<h2>@model.name</h2>
+			Add Suggestions by Searching
+		</div>
+		<div class="col-md-4">
+			<label for="searchText">Search</label>
+			<input type="text" id="searchText" name="searchText" />
+		</div>
+	</div>
+	@html.include('voting', model.votedTracks)
+	})
+
+	@html.block('scripts', function() {
+		<script type="text/javascript" src="/js/party.js"></script>
+	})
+})
