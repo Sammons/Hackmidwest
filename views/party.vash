@@ -1,16 +1,21 @@
 @html.extend('layout', function(model) {
 	@html.block('content', function(model) {
-	<div class="row">
-		<div class="col-md-8">
-			<h2>@model.name</h2>
-			Add Suggestions by Searching
+		<div class="row">
+			<div class="col-md-8">
+				<h2>@model.title</h2>
+				Add Suggestions by Searching
+			</div>
+			<div class="col-md-4">
+				<form id="searchForm" action="/search" method="post">
+					<label for="searchText">Search</label>
+					<input type="text" id="searchText" name="searchText" />
+					<button id="searchButton" type="button" class="btn">Search</button>
+				</form>
+			</div>
 		</div>
-		<div class="col-md-4">
-			<label for="searchText">Search</label>
-			<input type="text" id="searchText" name="searchText" />
+		<div id="content">
+			@html.include('voting', model.votedTracks)
 		</div>
-	</div>
-	@html.include('voting', model.votedTracks)
 	})
 
 	@html.block('scripts', function() {
