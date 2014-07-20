@@ -7,13 +7,13 @@ repository.search = function(query, entities) {
 				name : "A Song Name",
 				album : "I don't know",
 				artist : "Someone",
-				icon : "http://placehold.it/50&text=dunno"
+				albumIcon : "http://placehold.it/50&text=dunno"
 			},
 			{
 				name : "Bannana",
 				album : "Fruit",
 				artist : "Farmer",
-				icon : "http://placehold.it/50&text=fruit"
+				albumIcon : "http://placehold.it/50&text=fruit"
 			}
 		],
 		albums : [
@@ -39,6 +39,13 @@ repository.search = function(query, entities) {
 			}
 		]
 	};
+};
+
+repository.getPartyInfo = function(partyUrl) {
+	return {
+		title : "Ben's Party",
+		partyId : 3
+	}
 };
 
 repository.getVotedTracks = function(partyId) {
