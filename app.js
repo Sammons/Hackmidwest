@@ -4,8 +4,10 @@ var cookieparser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var init_rdio = require('./initialize_rdio.js');
+// var database = require('./database.js')
 var repo = require('./testRepository');
 var app = express();
+
 
 app.use(morgan('dev'));
 app.use(session({secret: "sosecret", resave: true, saveUninitialized: true}));
@@ -20,6 +22,30 @@ app.get('/', function(req, res) {
 	res.render('index.vash', { title : 'Rdio Thing'});
 	res.end();
 });
+init_rdio(app);
+
+app.get('/create',function(req, res) {
+	// page to create event
+	// needs event + password
+	// store properties in req.session =)
+	res.end('unsupported');
+})
+
+// ?song="something"
+app.post('/:page/upvote',function(req, res) {
+	// endpoint to upvote a song
+	// 
+})
+
+// ?song="something"
+app.post('/:page/downvote',function(req, res) {
+	// to downvote
+})
+
+// we should just do up-insert functionality
+// a song enters the queue on it's first vote
+// so at any given time a user finds a song and 
+// just upvotes/suggests it
 
 app.post('/vote', function(req, res) {
 	repo.voteForTrackForParty(res.body.trackId, res.body.partyId);
@@ -50,7 +76,6 @@ app.get('/:page', function(req, res) {
 	res.end();
 });
 
-init_rdio(app);
 
 app.use(express.static('public'));
 
