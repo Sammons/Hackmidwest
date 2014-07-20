@@ -1,0 +1,44 @@
+@if (model.tracks.length > 0) {
+	<h3>Tracks</h3>
+	@model.tracks.forEach(function(model) {
+		<div class="row">
+			<div class="col-xs-2">
+				<button type="button" class="btn btn-success"><strong>+</strong></button>
+			</div>
+			<div class="col-xs-3">
+				<img src="@model.albumIcon">
+			</div>
+			<div class="col-xs-7">
+				<div><strong>@model.name</strong></div>
+				<div>@model.artist - @model.album</div>
+			</div>
+		</div>
+	})	
+}
+@if (model.albums.length > 0) {
+	<h3>Albums</h3>
+	@model.albums.forEach(function(model) {
+		<div class="row">
+			<div class="col-xs-3">
+				<img src="@model.icon">
+			</div>
+			<div class="col-xs-9">
+				<div><strong>@model.name</strong></div>
+				<div>@model.artist</div>
+			</div>
+		</div>
+	})	
+}
+@if (model.artists.length > 0) {
+	<h3>Artists</h3>
+	@model.artists.forEach(function(model) {
+		<div class="row">
+			<div class="col-xs-3">
+				<img src="@model.icon">
+			</div>
+			<div class="col-xs-9">
+				<div><strong>@model.name</strong></div>
+			</div>
+		</div>
+	})	
+}

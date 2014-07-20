@@ -1,6 +1,12 @@
 var express = require('express');
-var app = express();
+var cookieparser = require('cookie-parser')
+var session = require('express-session');
+var init_rdio = require('./initialize_rdio.js');
 var repo = require('./testRepository');
+var app = express();
+
+app.use(session({secret: "sosecret", resave: true, saveUninitialized: true}))
+app.set('port', process.env.PORT || 3000)
 
 app.set('view engine', 'vash');
 
@@ -20,5 +26,8 @@ app.get('/:page', function(req, res) {
 	res.end();
 });
 
+init_rdio(app);
+
 app.use(express.static('public'));
-app.listen(3000);
+
+app.listen(app.get('port'));
