@@ -4,12 +4,14 @@ repository.search = function(query, entities) {
 	return {
 		tracks : [
 			{
+				id : "t123",
 				name : "A Song Name",
 				album : "I don't know",
 				artist : "Someone",
 				albumIcon : "http://placehold.it/50&text=dunno"
 			},
 			{
+				id : "t423",
 				name : "Bannana",
 				album : "Fruit",
 				artist : "Farmer",
@@ -18,11 +20,13 @@ repository.search = function(query, entities) {
 		],
 		albums : [
 			{
+				id : "a523",
 				name : "I don't know",
 				artist : "Someone",
 				icon : "http://placehold.it/50&text=dunno"
 			},
 			{
+				id : "a623",
 				name : "Just a song",
 				artist : "Silly Person",
 				icon : "http://placehold.it/50&text=song"
@@ -30,10 +34,12 @@ repository.search = function(query, entities) {
 		],
 		artists : [
 			{
+				id : "r723",
 				name : "Brittany Spears",
 				icon : "http://placehold.it/50&text=Brit"
 			},
 			{
+				id : "r823",
 				name : "Weird Al",
 				icon : "http://placehold.it/50&text=Al"
 			}
@@ -94,6 +100,10 @@ repository.removeTrackFromPartyOptions = function(trackId, partyId) {
 };
 
 repository.voteForTrackForParty = function(trackId, partyId) {
+	//TODO: stuff
+};
+
+repository.voteAgainstTrackForParty = function(trackId, partyId) {
 	//TODO: stuff
 };
 
