@@ -1,0 +1,23 @@
+{
+  "name": "RdioVoteMidwest",
+  "version": "0.0.0",
+  "description": "Hackmidwest ===========",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.6.1",
+    "vash": "^0.7.12-1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sammons/hackmidwest"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/sammons/hackmidwest/issues"
+  },
+  "homepage": "https://github.com/sammons/hackmidwest"
+}
