@@ -73,4 +73,6 @@ module.exports = function( app ) {
 		for (var i in Object.keys(req.session)) req.session[i] = null;
 		res.redirect('/');
 	})
+	app.rdio = rdio;
+
 }
