@@ -3,14 +3,14 @@
 	@model.tracks.forEach(function(model) {
 		<div class="row">
 			<div class="col-xs-2">
-				<button type="button" class="btn btn-success add-track-button" data-track-id="@model.id"><strong>+</strong></button>
+				<button type="button" class="btn btn-success add-track-button" data-track-id="@model.key"><strong>+</strong></button>
 			</div>
 			<div class="col-xs-3">
-				<img src="@model.albumIcon">
+				<img width='350px' height='350px' src="@model.gridIcon">
 			</div>
 			<div class="col-xs-7">
 				<div><strong>@model.name</strong></div>
-				<div>@model.artist - @model.album</div>
+				<div>@model.albumArtist - @model.album</div>
 			</div>
 		</div>
 	})	

@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var init_rdio = require('./initialize_rdio.js');
 // var database = require('./database.js')
-var repo = require('./testRepository');
+var repo = require('./repository');
 var app = express();
 
 
@@ -56,8 +56,13 @@ app.post('/:page/removeTrack', function(req, res) {
 });
 
 app.post('/search', function(req, res) {
-	res.render('searchresults.vash', repo.search(req.body.searchText));
-	res.end();
+	console.log(req.session.rdio)
+	repo.search(req.body.searchText, "album,artist,track" ,app.users[req.session.key].rdio, 
+		function( result ) 
+			{
+			res.render('searchresults.vash', result);
+			res.end();
+			})
 });
 
 app.post('/albumTracks', function(req, res) {
@@ -73,7 +78,7 @@ app.post('/artistAlbums', function(req, res) {
 app.get('/:page', function(req, res) {
 	var partyInfo = repo.getPartyInfo(req.params.page);
 	partyInfo.votedTracks = repo.getVotedTracks(partyInfo.partyId);
-
+	partyInfo.playbackToken = app.users[req.session.key].playbackToken;
 	res.render('party.vash', partyInfo);
 	res.end();
 });

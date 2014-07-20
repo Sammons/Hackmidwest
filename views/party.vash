@@ -73,9 +73,12 @@
 </div>
 	})
 
-	@html.block('scripts', function() {
+	@html.block('scripts', function(model) {
 		<script src="/js/swfobject.js"></script>
-		<script src="/js/token.js"></script>
+		<script type="text/javascript">
+		window.playback_token="@model.playbackToken";
+		window.domain = 'localhost';
+		</script>
   		<script src="/js/player.js"></script>
 		<script type="text/javascript" src="/js/party.js"></script>
 	})

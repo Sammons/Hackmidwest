@@ -5,6 +5,8 @@ var RdioCredentials = require('./rdio_consumer_credentials');
 // logic for a master user logging in
 module.exports = function( app ) {
 
+	app.users = {};
+
 	app.get('/login',function(req,res) {
 		var rdio = new Rdio([RdioCredentials.RDIO_CONSUMER_KEY, RdioCredentials.RDIO_CONSUMER_SECRET]);
 	    var port = ( app.get('port') == 3000 ? ':3000' : '')
@@ -59,15 +61,17 @@ module.exports = function( app ) {
 					// 	doc.rdioAccessSecret = rdio.token[1];
 					// 	doc.save();
 					// })
-					req.session.user = currentUser;
-					req.access = rdio.token
-					req.session.rdio = rdio;
+					req.session.key= currentUser.key;
 					rdio.call('getPlaybackToken',{
 						domain: 'localhost'
 					},function(err, data) {
-						console.log(err,data)
+						app.users[currentUser.key] = {
+							rdio: rdio,
+							user: currentUser,
+							playbackToken: data.result
+						}
+						res.redirect('/ben')
 					})
-					res.redirect('/create')
 				})
 			});
 		} else {
