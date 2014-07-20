@@ -34,31 +34,24 @@ app.get('/create',function(req, res) {
 // ?song="something"
 app.post('/:page/upvote',function(req, res) {
 	// endpoint to upvote a song
-	// 
+	repo.voteForTrackForPary(req.body.trackId, req.params.page);
+	res.end();
 })
 
 // ?song="something"
 app.post('/:page/downvote',function(req, res) {
 	// to downvote
+	repo.voteAgainstTrackForPary(req.body.trackId, req.params.page);
+	res.end();
 })
 
-// we should just do up-insert functionality
-// a song enters the queue on it's first vote
-// so at any given time a user finds a song and 
-// just upvotes/suggests it
-
-app.post('/vote', function(req, res) {
-	repo.voteForTrackForParty(res.body.trackId, res.body.partyId);
+app.post('/:page/addTrack', function(req, res) {
+	repo.addTrackToPartyOptions(req.body.trackId, req.params.page);
 	res.end();
 });
 
-app.post('/addTrack', function(req, res) {
-	repo.addTrackToPartyOptions(req.body.trackId, res.body.partyId);
-	res.end();
-});
-
-app.post('/removeTrack', function(req, res) {
-	repo.removeTrackFromPartyOptions(req.body.trackId, res.body.partyId);
+app.post('/:page/removeTrack', function(req, res) {
+	repo.removeTrackFromPartyOptions(req.body.trackId, req.params.page);
 	res.end();
 });
 
@@ -67,8 +60,17 @@ app.post('/search', function(req, res) {
 	res.end();
 });
 
+app.post('/albumTracks', function(req, res) {
+	res.render('albumtracks.vash', repo.getTracksForAlbum(req.body.albumId));
+	res.end();
+});
+
+app.post('/artistAlbums', function(req, res) {
+	res.render('artistalbums.vash', repo.getAlbumsForArtist(req.body.artistId));
+	res.end();
+});
+
 app.get('/:page', function(req, res) {
-	//TODO: hit the db
 	var partyInfo = repo.getPartyInfo(req.params.page);
 	partyInfo.votedTracks = repo.getVotedTracks(partyInfo.partyId);
 
