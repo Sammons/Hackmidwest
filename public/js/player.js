@@ -36,7 +36,7 @@ $(document).ready(function() {
   var attributes = {};
   swfobject.embedSWF('http://www.rdio.com/api/swf/', // the location of the Rdio Playback API SWF
       'apiswf', // the ID of the element that will be replaced with the SWF
-      1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
+      1, 1, swfobject.getFlashPlayerVersion().major+'', 'expressInstall.swf', flashvars, params, attributes);
 
 
   // set up the controls

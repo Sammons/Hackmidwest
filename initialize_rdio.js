@@ -61,7 +61,12 @@ module.exports = function( app ) {
 					// })
 					req.session.user = currentUser;
 					req.access = rdio.token
-					app.rdio = rdio;
+					req.session.rdio = rdio;
+					rdio.call('getPlaybackToken',{
+						domain: 'localhost'
+					},function(err, data) {
+						console.log(err,data)
+					})
 					res.redirect('/create')
 				})
 			});
