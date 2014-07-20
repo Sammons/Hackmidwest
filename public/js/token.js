@@ -29,5 +29,5 @@ THE SOFTWARE.
 //   {"status": "ok", "result": "YOUR_PLAYBACK_TOKEN"}
 // then update playback_token below with YOUR_PLAYBACK_TOKEN and the domain below with YOUR_DOMAIN
 
-var playback_token = "GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=";
+var playback_token = "GAlTy6WGATHAlXB2dWM3djdmOGY2OHlrY2FmdDhuanphM2xvY2FsaG9zdIAtn32X0y00QAvVNmUw_k4=";
 var domain = "localhost";
