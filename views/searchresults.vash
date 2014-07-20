@@ -6,7 +6,7 @@
 				<button type="button" class="btn btn-success add-track-button" data-track-id="@model.key"><strong>+</strong></button>
 			</div>
 			<div class="col-xs-3">
-				<img width='350px' height='350px' src="@model.gridIcon">
+				<img width='50px' height='50px' src="@model.icon">
 			</div>
 			<div class="col-xs-7">
 				<div><strong>@model.name</strong></div>
@@ -20,7 +20,7 @@
 	@model.albums.forEach(function(model) {
 		<div class="row">
 			<div class="col-xs-3">
-				<img src="@model.icon">
+				<img width='50px' height='50px' src="@model.icon">
 			</div>
 			<div class="col-xs-9">
 				<div><strong>@model.name</strong></div>
@@ -34,7 +34,7 @@
 	@model.artists.forEach(function(model) {
 		<div class="row">
 			<div class="col-xs-3">
-				<img src="@model.icon">
+				<img width='50px' height='50px' src="@model.icon">
 			</div>
 			<div class="col-xs-9">
 				<div><strong>@model.name</strong></div>

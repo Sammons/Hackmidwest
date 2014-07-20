@@ -9,6 +9,7 @@ function filter_album( album ) {
 function filter_artist( artist ) {
 	return artist;
 }
+
 repository.search = function(query, entities, rdio, callback) {
 	 rdio.call('search', {
 	 	query: query,
@@ -37,64 +38,55 @@ repository.search = function(query, entities, rdio, callback) {
 
 };
 
-repository.getPartyInfo = function(partyUrl) {
-	return {
-		title : "Ben's Party",
-		partyId : 3
+repository.getPartyInfo = function(partyUrl, db, callback) {
+	callback(db.parties[partyUrl]);
+};
+
+repository.getAlbumsForArtist = function(artistId, rdio, callback) {
+	rdio.call('getAlbumsForArtist', {
+		artist : artistId
+	}, function(err, data) {
+		callback(filter_album(data.result));
+	});
+};
+
+repository.getTracksForAlbum = function(albumId, rdio, callback) {
+	rdio.call('get', {
+		keys : albumId,
+		extras : '-*,trackKeys'
+	}, function(err, data) {
+		rdio.call('get', {
+			keys : data.result.trackKeys.join(',')
+		}, function(err, data) {
+			callback(data.result);
+		})
+	});
+};
+
+repository.createParty = function (partyName, db, callback) {
+	var partyUrl = partyName.replace(" ", "_").replace("'", "");
+	db.parties[partyUrl] = {
+		title : partyName,
+		trackVotes : {}
 	}
+	callback(partyUrl);
 };
 
-repository.getVotedTracks = function(partyId) {
-	//this information should actually be stored in our database so we don't have to hit the rdio ws
-	return [{
-		name : "A Song Name",
-		album : "I don't know",
-		artist : "Someone",
-		votes : 5,
-		icon : "http://placehold.it/50&text=dunno"
-	},
-	{
-		name : "Bannana",
-		album : "Fruit",
-		artist : "Farmer",
-		votes : 15,
-		icon : "http://placehold.it/50&text=fruit"
-	}];
+repository.addTrackToPartyOptions = function(trackInfo, partyUrl, db, callback) {
+	trackInfo.votes = 1;
+	db.parties[partyUrl].trackVotes[trackInfo.key] = trackInfo;
 };
 
-repository.getAlbumsForArtist = function(artistId) {
-	return [{
-		name : "I don't know",
-		artist : "Someone",
-		icon : "http://placehold.it/50&text=dunno"
-	}];
+repository.removeTrackFromPartyOptions = function(trackId, partyUrl, db, callback) {
+	delete db.parties[partyUrl].trackVotes[trackInfo.key];
 };
 
-repository.getTracksForAlbum = function(albumId) {
-	return [{
-		name : "Bannana",
-		album : "Fruit",
-		artist : "Farmer",
-		icon : "http://placehold.it/50&text=fruit"
-	}];
+repository.voteForTrackForParty = function(trackId, partyUrl, db, callback) {
+	db.parties[partyUrl].trackVotes[trackId].votes++;
 };
 
-repository.addTrackToPartyOptions = function(trackId, partyId) {
-	//TODO: stuff
-};
-
-repository.removeTrackFromPartyOptions = function(trackId, partyId) {
-	//TODO: stuff
-	//this should be the result of a track getting too heavily downvoted or the admin removing it
-	//if the admin removes it maybe we should ban it too (that would be some extra work)
-};
-
-repository.voteForTrackForParty = function(trackId, partyId) {
-	//TODO: stuff
-};
-
-repository.voteAgainstTrackForParty = function(trackId, partyId) {
-	//TODO: stuff
+repository.voteAgainstTrackForParty = function(trackId, partyUrl, db, callback) {
+	db.parties[partyUrl].trackVotes[trackId].votes--;
 };
 
 module.exports = repository;

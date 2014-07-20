@@ -1,5 +1,20 @@
-@html.extend('layout', function(model) {
-	@html.block('content', function(model) {
+@html.extend(
+'layout',
+function(model) {
+
+	@html.block('scripts', function(model) {
+		<script src="/js/swfobject.js"></script>
+		<script type="text/javascript">
+		window.playback_token="@model.playbackToken";
+		window.domain = 'localhost';
+		</script>
+  		<script src="/js/player.js"></script>
+		<script type="text/javascript" src="/js/party.js"></script>
+	})
+	
+	@html.block(
+	'content',
+	function(model) {
 		<div class="row">
 			<div class="col-md-8">
 				<h2>@model.title</h2>
@@ -71,15 +86,5 @@
         </div>
       </div>
 </div>
-	})
-
-	@html.block('scripts', function(model) {
-		<script src="/js/swfobject.js"></script>
-		<script type="text/javascript">
-		window.playback_token="@model.playbackToken";
-		window.domain = 'localhost';
-		</script>
-  		<script src="/js/player.js"></script>
-		<script type="text/javascript" src="/js/party.js"></script>
 	})
 })

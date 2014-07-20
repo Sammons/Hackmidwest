@@ -1,7 +1,5 @@
 @html.extend('layout', function(model) {
 	@html.block('content', function(model) {
-		<div>
-			This is the index!
-		</div>
+		<a href="/create">Create a Party</a>
 	})
 })

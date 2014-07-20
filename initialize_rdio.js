@@ -70,7 +70,7 @@ module.exports = function( app ) {
 							user: currentUser,
 							playbackToken: data.result
 						}
-						res.redirect('/ben')
+						res.redirect('/')
 					})
 				})
 			});
