@@ -31,6 +31,22 @@ app.get('/create',function(req, res) {
 	res.end('unsupported');
 })
 
+// ?song="something"
+app.post('/:page/upvote',function(req, res) {
+	// endpoint to upvote a song
+	// 
+})
+
+// ?song="something"
+app.post('/:page/downvote',function(req, res) {
+	// to downvote
+})
+
+// we should just do up-insert functionality
+// a song enters the queue on it's first vote
+// so at any given time a user finds a song and 
+// just upvotes/suggests it
+
 app.get('/search', function(req, res) {
 	console.log(req.body);
 	res.render('searchresults.vash', repo.search());
