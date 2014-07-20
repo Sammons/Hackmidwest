@@ -24,6 +24,13 @@ app.get('/', function(req, res) {
 });
 init_rdio(app);
 
+app.get('/create',function(req, res) {
+	// page to create event
+	// needs event + password
+	// store properties in req.session =)
+	res.end('unsupported');
+})
+
 app.get('/search', function(req, res) {
 	console.log(req.body);
 	res.render('searchresults.vash', repo.search());
