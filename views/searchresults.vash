@@ -3,7 +3,7 @@
 	@model.tracks.forEach(function(model) {
 		<div class="row">
 			<div class="col-xs-2">
-				<button type="button" class="btn btn-success"><strong>+</strong></button>
+				<button type="button" class="btn btn-success add-track-button" data-track-id="@model.id"><strong>+</strong></button>
 			</div>
 			<div class="col-xs-3">
 				<img src="@model.albumIcon">

@@ -49,6 +49,7 @@ repository.getPartyInfo = function(partyUrl) {
 };
 
 repository.getVotedTracks = function(partyId) {
+	//this information should actually be stored in our database so we don't have to hit the rdio ws
 	return [{
 		name : "A Song Name",
 		album : "I don't know",
@@ -82,5 +83,18 @@ repository.getTracksForAlbum = function(albumId) {
 	}];
 };
 
+repository.addTrackToPartyOptions = function(trackId, partyId) {
+	//TODO: stuff
+};
+
+repository.removeTrackFromPartyOptions = function(trackId, partyId) {
+	//TODO: stuff
+	//this should be the result of a track getting too heavily downvoted or the admin removing it
+	//if the admin removes it maybe we should ban it too (that would be some extra work)
+};
+
+repository.voteForTrackForParty = function(trackId, partyId) {
+	//TODO: stuff
+};
 
 module.exports = repository;

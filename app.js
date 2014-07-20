@@ -21,9 +21,23 @@ app.get('/', function(req, res) {
 	res.end();
 });
 
-app.get('/search', function(req, res) {
-	console.log(req.body);
-	res.render('searchresults.vash', repo.search());
+app.post('/vote', function(req, res) {
+	repo.voteForTrackForParty(res.body.trackId, res.body.partyId);
+	res.end();
+});
+
+app.post('/addTrack', function(req, res) {
+	repo.addTrackToPartyOptions(req.body.trackId, res.body.partyId);
+	res.end();
+});
+
+app.post('/removeTrack', function(req, res) {
+	repo.removeTrackFromPartyOptions(req.body.trackId, res.body.partyId);
+	res.end();
+});
+
+app.post('/search', function(req, res) {
+	res.render('searchresults.vash', repo.search(req.body.searchText));
 	res.end();
 });
 
